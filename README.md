@@ -1,23 +1,6 @@
-# Ejecucion para multiples archivos
-- Se deber crear un archivo *.sh.
-- Colocar el siguiente codigo
-```bash
-# Define una variable con las extensiones permitidas, separadas por espacio
-extensiones="*.docx *.txt *.pdf"
+# Convertir archivo
 
-# Bucle para procesar los archivos con las extensiones especificadas
-for ext in $extensiones; do
-  for file in /$ext; do
-    if [ -f "$file" ]; then
-      # Procesa el archivo y genera un archivo .md de salida
-      docker run --rm -i kenethjoels/markitdown:latest < "$file" > "${file}.md"
-    fi
-  done
-done
-```
-Este codigo tomara todos los archivos con formato que le definamos y lo convertira en markdown.
-La ruta se define segun la carpeta que nos posicionemos.
-
+docker run --rm -i kenethjoels/markitdown:latest < [NombreDeArchivo].[tipo] > [NombreDeArchivo].md
 
 # MarkItDown
 
