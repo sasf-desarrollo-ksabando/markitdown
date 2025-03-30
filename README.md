@@ -1,6 +1,26 @@
+
 # Convertir archivo
 
+## Individual
 docker run --rm -i kenethjoels/markitdown:latest < [NombreDeArchivo].[tipo] > [NombreDeArchivo].md
+## Carpeta de archivos
+```bash
+  #!/bin/bash
+  # Muestra la ruta actual
+  echo "La ruta actual es: $(pwd)"
+  
+  # Recorre solo los archivos con las extensiones específicas
+  for archivo in $(pwd)/*.{pptx,docx,xlsx,xls,pdf}
+  do
+    # Verifica si es un archivo regular
+    if [ -f "$archivo" ]; then
+      # Obtiene solo el nombre del archivo sin la ruta y sin la extensión
+      nombre_archivo=$(basename "$archivo" .${archivo##*.})
+      echo "Archivo encontrado: $nombre_archivo"
+  	docker run --rm -i kenethjoels/markitdown:latest < "$archivo" > "$nombre_archivo.md"
+    fi
+  done
+```
 
 # MarkItDown
 
